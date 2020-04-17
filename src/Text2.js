@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import ordersupp from './orderSupp'
 
 class Text2 extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const {state, handleChange, placeholder} = this.props;
