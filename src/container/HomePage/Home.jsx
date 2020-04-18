@@ -6,6 +6,7 @@
 import React from 'react'
 import { HeaderImg } from '../../components/Header/HeaderImg';
 import {SearchBar} from "../SearchBar/SearchBar";
+import PosterList from "../PosterList/PosterList";
 
 const movies = [
     {
@@ -13,15 +14,15 @@ const movies = [
         id: 475557,
         overview:
             'Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.',
-        poster_path: '/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg',
+        poster_path: './images/Fast_small.jpg',
         title: 'Joker',
     },
     {
-        backdrop_path: './images/Fast_small.jpg',
+        backdrop_path: './images/Fast_large.jpg',
         id: 475558,
         overview:
             'Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.',
-        poster_path: '/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg',
+        poster_path: './images/Fast_small.jpg',
         title: 'Joker',
     },
     {
@@ -29,15 +30,15 @@ const movies = [
         id: 475559,
         overview:
             'Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.',
-        poster_path: '/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg',
+        poster_path: './images/Fast_small.jpg',
         title: 'Joker',
     },
     {
-        backdrop_path: './images/Fast_small.jpg',
+        backdrop_path: './images/Fast_large.jpg',
         id: 475554,
         overview:
             'Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.',
-        poster_path: '/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg',
+        poster_path: './images/Fast_small.jpg',
         title: 'Joker',
     },
 ];
@@ -52,6 +53,7 @@ class Home extends React.Component {
                 imgSrc='./images/Fast_large.jpg'
             />
             <SearchBar />
+            <PosterList movies={movies} />
             </div>
         );
     }

@@ -1,11 +1,31 @@
 /**
  * @author Bruno Prdt
- * PosterList.jsx
+ * container/PosterList
  */
-import React from "react";
+import React from 'react';
 import '../../css/PosterList.css';
+import Poster from '../Poster/poster';
 
 class PosterList extends React.Component{
+    // arow function to bind this
+    whish = false;
+
+    renderPoster = () => {
+        return this.props.movies.map( movie => {
+            const imgSrc = movie.poster_path;
+            return (
+                <Poster
+                    key={movie.id}
+                    imgSrc={imgSrc}
+                    hover={false}
+                    whished={this.whish}
+                    movie={movie}
+                    mTitle={movie.title}
+                    mDesc={movie.overview}
+                />
+            )
+        })
+    };
     render() {
         return (
             <div className="posterList">
