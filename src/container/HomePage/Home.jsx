@@ -4,24 +4,57 @@
  * This is the first thing users see of our App, at the '/' route
  */
 import React from 'react'
+import { HeaderImg } from '../../components/Header/HeaderImg';
+import {SearchBar} from "../SearchBar/SearchBar";
 
 const movies = [
     {
-        backdrop_path: "/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+        backdrop_path: './images/Fast_large.jpg',
         id: 475557,
         overview:
-            "Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.",
-        poster_path: "/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg",
-        title: "Joker"
-    }
+            'Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.',
+        poster_path: '/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg',
+        title: 'Joker',
+    },
+    {
+        backdrop_path: './images/Fast_small.jpg',
+        id: 475558,
+        overview:
+            'Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.',
+        poster_path: '/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg',
+        title: 'Joker',
+    },
+    {
+        backdrop_path: './images/Fast_large.jpg',
+        id: 475559,
+        overview:
+            'Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.',
+        poster_path: '/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg',
+        title: 'Joker',
+    },
+    {
+        backdrop_path: './images/Fast_small.jpg',
+        id: 475554,
+        overview:
+            'Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.',
+        poster_path: '/tWjJ3ILjsbTwKgXxEv48QAbYZ19.jpg',
+        title: 'Joker',
+    },
 ];
 
 class Home extends React.Component {
     render() {
-        return(
-            <div>Home</div>
-        )
+        return (
+            <div>
+            <HeaderImg
+                title="Fast and Furious"
+                overvieuw="Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
+                imgSrc='./images/Fast_large.jpg'
+            />
+            <SearchBar />
+            </div>
+        );
     }
 }
 
-export {Home}
+export { Home }

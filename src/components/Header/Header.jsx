@@ -1,5 +1,6 @@
 /**
  * @author Bruno Prdt
+ * Header
  */
 import React from 'react';
 import Fontawesome from 'react-fontawesome';
