@@ -5,8 +5,9 @@
  */
 import React from 'react'
 import { HeaderImg } from '../../components/Header/HeaderImg';
-import {SearchBar} from "../SearchBar/SearchBar";
-import PosterList from "../PosterList/PosterList";
+import {SearchBar} from '../SearchBar/SearchBar';
+import PosterList from '../PosterList/PosterList';
+import LoadButton from '../LoadButton/LoadButton';
 
 const movies = [
     {
@@ -54,6 +55,7 @@ class Home extends React.Component {
             />
             <SearchBar />
             <PosterList movies={movies} />
+            <LoadButton loading={false} />
             </div>
         );
     }
