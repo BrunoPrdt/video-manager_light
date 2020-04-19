@@ -12,7 +12,7 @@ import LoadButton from '../LoadButton/LoadButton';
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        {/* this.state = {
             movies: [
                 {
                     backdrop_path: './images/Fast_large.jpg',
@@ -47,24 +47,28 @@ class Home extends React.Component {
                     title: 'Joker',
                 },
             ],
-            title: 'Fast and Furious',
-            overview:
+            movieTitle: 'Fast and Furious',
+            movieDescription:
                 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
-            imgSrc: './images/Fast_large.jpg',
+            image: './images/Fast_large.jpg',
             loading: false,
-        };
+            activePage: 0,
+            totalPages: 0,
+            searchText: null,
+        }; */}
     }
     render() {
+        const {movieTitle, movieDescription, image, movies, loading} = this.props;
         return (
             <div>
             <HeaderImg
-                title={this.state.title}
-                overvieuw={this.state.overview}
-                imgSrc={this.state.imgSrc}
+                title={movieTitle}
+                overvieuw={movieDescription}
+                imgSrc={image}
             />
                 <SearchBar />
-                <PosterList movies={this.state.movies} />
-                <LoadButton loading={this.state.loading} />
+                <PosterList movies={movies} />
+                <LoadButton loading={loading} />
             </div>
         );
     }
