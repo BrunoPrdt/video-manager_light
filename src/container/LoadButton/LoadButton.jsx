@@ -13,7 +13,11 @@ function LoadButton(props) {
             {props.loading ? (
                 spinner
             ) : (
-                <div className="loadButton">
+                <div
+                    className="loadButton"
+                    /* eslint-disable-next-line react/prop-types */
+                    onClick={props.onButtonClick}
+                >
                     <h3 className="loadButton--text">VOIR PLUS</h3>
                 </div>
             )}

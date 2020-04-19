@@ -66,9 +66,12 @@ class Home extends React.Component {
                 overvieuw={movieDescription}
                 imgSrc={image}
             />
-                <SearchBar />
+                <SearchBar onSearchClick={this.props.onSearchClick} />
                 <PosterList movies={movies} />
-                <LoadButton loading={loading} />
+                <LoadButton
+                    loading={loading}
+                    onButtonClick={this.props.onButtonClick}
+                />
             </div>
         );
     }

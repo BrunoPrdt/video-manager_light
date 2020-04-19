@@ -53,11 +53,25 @@ class App extends React.Component {
         }
     };
 
+    handleSearch = value => {
+        // launch search
+        console.log(value);
+    };
+
+    loadMore = () => {
+        // launch query
+        console.log('test loadMore');
+    };
+
   render() {
     return (
         <div className="App">
             <Header badge={this.state.badge} />
-            <Home {...this.state} />
+            <Home
+                {...this.state}
+                onSearchClick={this.handleSearch}
+                onButtonClick={this.loadMore}
+            />
         </div>
     );
   }

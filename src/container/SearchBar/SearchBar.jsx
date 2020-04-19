@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: null,
+            value: '',
         };
     }
 
@@ -31,7 +31,11 @@ class SearchBar extends React.Component {
                         onChange={this.handleChange}
                     />
                     <div className="searchBar--submit">
-                        <Fontawesome className="searchIcon" name="search" />
+                        <Fontawesome
+                            className="searchIcon"
+                            name="search"
+                            onClick={() => this.props.onSearchClick(this.state.value)}
+                        />
                     </div>
                 </div>
             </div>
