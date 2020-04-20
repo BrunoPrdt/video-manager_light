@@ -19,6 +19,8 @@ class SearchBar extends React.Component {
         this.setState({ value: e.currentTarget.value });
     };
 
+    onSearchClick = () => {this.props.onSearchClick(this.state.value)};
+
     render() {
         return (
             <div className="searchBar--container">
@@ -34,7 +36,7 @@ class SearchBar extends React.Component {
                         <Fontawesome
                             className="searchIcon"
                             name="search"
-                            onClick={() => this.props.onSearchClick(this.state.value)}
+                            onClick={this.onSearchClick}
                         />
                     </div>
                 </div>
