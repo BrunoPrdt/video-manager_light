@@ -47,7 +47,11 @@ class Poster extends React.Component {
                 onMouseEnter={this.showOverlay}
                 onMouseLeave={this.hideOverlay}
             >
-                <img className="poster--img" src={this.props.imgSrc} alt="poster" />
+                <img
+                    className="poster--img"
+                    src={this.props.imgSrc}
+                    alt={this.props.mTitle}
+                />
                 {this.state.hover ? (
                     <div className="poster--overlay">
                         <h3 className="poster--overlay__text">LISTE DE SOUHAITS</h3>

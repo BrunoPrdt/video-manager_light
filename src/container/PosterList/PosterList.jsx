@@ -5,6 +5,7 @@
 import React from 'react';
 import '../../css/PosterList.css';
 import Poster from '../Poster/poster';
+import {POSTER_SIZE, IMAGE_BASE_URL} from "../../config";
 
 function PosterList(props) {
     const whish = false;
@@ -12,7 +13,7 @@ function PosterList(props) {
     const renderPoster = () =>
         // eslint-disable-next-line react/prop-types
         props.movies.map(movie => {
-            const imgSrc = movie.poster_path;
+            const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}/${movie.poster_path}`;
             return (
                 <Poster
                     key={movie.id}
