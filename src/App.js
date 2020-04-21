@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {Header} from "./components/Header";
 import {Home} from './container/HomePage';
-import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from './config';
+import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -17,7 +17,8 @@ class App extends React.Component {
             loading: false,
             activePage: 0,
             totalPages: 0,
-            searchText: null,
+            searchText: '',
+            adultContent: false,
         };
     };
 
@@ -45,17 +46,18 @@ class App extends React.Component {
     }; */
     loadMovies = () => {
         const page = this.state.activePage + 1;
-        const moviesUrl = `${API_URL}/movie/popular?api_key=${API_KEY}&page=${page}&language=fr`;
+        const moviesUrl = `${API_URL}/movie/popular?api_key=${API_KEY}&page=${page}&language=fr&include_adult=${
+            this.state.adultContent}`;
         return axios.get(moviesUrl);
     };
 
     async componentDidMount() {
         try {
-            const { data: { results, activePage, total_pages } } = await this.loadMovies();
+            const { data: { results, page, total_pages } } = await this.loadMovies();
             this.setState({
                 movies: results,
                 totalPages: total_pages,
-                activePage: activePage,
+                activePage: page,
                 image: `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
                 movieTitle: results[0].title,
                 movieDescription: results[0].overview,
@@ -65,14 +67,61 @@ class App extends React.Component {
         }
     }
 
-    handleSearch = value => {
-        // launch search
-        console.log(value);
+    loadMore = async () => {
+        try {
+            this.setState({loading: true});
+            const {
+                data: { results, page, total_pages },
+            } = await this.loadMovies();
+            this.setState({
+                movies: [...this.state.movies, ...results],
+                totalPages: total_pages,
+                activePage: page,
+                image: `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
+                movieTitle: results[0].title,
+                movieDescription: results[0].overview,
+                loading: false,
+            });
+        } catch (e) {
+            console.log('error e', e);
+        }
     };
 
-    loadMore = () => {
-        // launch query
-        console.log('test loadMore');
+    searchMovie = () => {
+        const moviesUrlById = `${API_URL}/search/movie?api_key=${API_KEY}&language=fr&query=${ 
+            this.state.searchText
+        }&include_adult=${this.state.adultContent}`;
+        return axios.get(moviesUrlById);
+    };
+
+    handleSearch = value => {
+        try {
+            this.setState(
+                { searchText: value, loading: true, image: null },
+                async () => {
+                    const {
+                        data: { results, page, total_pages },
+                    } = await this.searchMovie();
+                    this.setState({
+                        movies: results,
+                        totalPages: total_pages,
+                        activePage: page,
+                        image: `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${
+                            results[0].backdrop_path}`,
+                        movieTitle: results[0].title,
+                        movieDescription: results[0].overview,
+                        loading: false,
+                        searchText: true,
+                    });
+                },
+                )
+        } catch (e) {
+            console.log('error e', e);
+        }
+    };
+
+    handleCheck = e => {
+        this.setState({ adultContent: e });
     };
 
   render() {
@@ -83,6 +132,7 @@ class App extends React.Component {
                 {...this.state}
                 onSearchClick={this.handleSearch}
                 onButtonClick={this.loadMore}
+                handleCheck={this.handleCheck}
             />
         </div>
     );

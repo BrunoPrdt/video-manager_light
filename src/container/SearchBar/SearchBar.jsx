@@ -19,7 +19,13 @@ class SearchBar extends React.Component {
         this.setState({ value: e.currentTarget.value });
     };
 
-    onSearchClick = () => {this.props.onSearchClick(this.state.value)};
+    onSearchClick = () => {
+        this.props.onSearchClick(this.state.value)
+    };
+
+    handleCheck = e => {
+        this.props.handleCheck(e.currentTarget.checked);
+    };
 
     render() {
         return (
@@ -39,6 +45,13 @@ class SearchBar extends React.Component {
                             onClick={this.onSearchClick}
                         />
                     </div>
+                </div>
+                <div>
+                    <span style={{ color: '#fff', fontSize: '2rem' }} >
+                        {' '}
+                        Autoriser le contenu adulte{' '}
+                    </span>
+                    <input type="checkbox" onClick={this.handleCheck} />
                 </div>
             </div>
         );

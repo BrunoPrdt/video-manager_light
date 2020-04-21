@@ -8,10 +8,11 @@ import { HeaderImg } from '../../components/Header/HeaderImg';
 import {SearchBar} from '../SearchBar/SearchBar';
 import PosterList from '../PosterList/PosterList';
 import LoadButton from '../LoadButton/LoadButton';
+import { spinner } from '../Spinner/Spinner';
 
 class Home extends React.Component {
     render() {
-        const {movieTitle, movieDescription, image, movies, loading} = this.props;
+        const {movieTitle, movieDescription, image, movies, loading, activePage, totalPages} = this.props;
         return (
             <div>
             <HeaderImg
@@ -19,11 +20,16 @@ class Home extends React.Component {
                 overview={movieDescription}
                 imgSrc={image}
             />
-                <SearchBar onSearchClick={this.props.onSearchClick} />
+                <SearchBar
+                    onSearchClick={this.props.onSearchClick}
+                    handleCheck={this.props.handleCheck}
+                />
                 <PosterList movies={movies} />
                 <LoadButton
                     loading={loading}
                     onButtonClick={this.props.onButtonClick}
+                    activePage={activePage}
+                    totalPages={totalPages}
                 />
             </div>
         );
