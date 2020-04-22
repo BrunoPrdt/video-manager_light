@@ -1,9 +1,13 @@
 import React from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
 import {Header} from "./components/Header";
 import {Home} from './container/HomePage';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import axios from 'axios';
+import { spinner } from "./container/Spinner/Spinner";
+import Details from "./container/DetailsPage";
+import NotFound from "./container/NotFoundPage";
 
 class App extends React.Component {
     constructor(props) {
@@ -13,8 +17,8 @@ class App extends React.Component {
             movies: [],
             movieTitle: '',
             movieDescription: '',
-            image: '',
-            loading: false,
+            image: null,
+            loading: true,
             activePage: 0,
             totalPages: 0,
             searchText: '',
@@ -126,15 +130,29 @@ class App extends React.Component {
 
   render() {
     return (
-        <div className="App">
-            <Header badge={this.state.badge} />
-            <Home
-                {...this.state}
-                onSearchClick={this.handleSearch}
-                onButtonClick={this.loadMore}
-                handleCheck={this.handleCheck}
-            />
-        </div>
+        <BrowserRouter>
+            <div className="App">
+                <Header badge={this.state.badge} />
+                {!this.state.image ? (
+                    spinner
+                ) : (
+                    <Switch>
+                        {/* <Route exact path="/" component={Home} />  methode si pas besoin de passer des props */}
+                        <Route exact path="/" render={() => (
+                            <Home
+                                {...this.state}
+                                onSearchClick={this.handleSearch}
+                                onButtonClick={this.loadMore}
+                                handleCheck={this.handleCheck}
+                            />
+                        )}
+                        />
+                        <Route path="/details/:id" component={Details} />
+                        <Route path="" component={NotFound} />
+                    </Switch>
+                )}
+            </div>
+        </BrowserRouter>
     );
   }
 }

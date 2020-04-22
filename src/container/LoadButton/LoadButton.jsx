@@ -1,6 +1,6 @@
 /**
  * @author Bruno Prdt
- * container/Poster
+ * container/LoadButton
  */
 import React from 'react';
 import '../../css/LoadButton.css';
