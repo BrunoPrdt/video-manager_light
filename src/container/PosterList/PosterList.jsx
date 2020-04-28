@@ -17,6 +17,7 @@ function PosterList(props) {
             return (
                 <Poster
                     key={movie.id}
+                    id={movie.id}
                     imgSrc={imgSrc}
                     whished={whish}
                     movie={movie}

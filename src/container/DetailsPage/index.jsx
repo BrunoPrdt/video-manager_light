@@ -6,25 +6,69 @@ import React from 'react';
 import '../../css/Container.css';
 import HeaderDetails from './HeaderDetails';
 import ActorList from './ActorList';
-import { spinner } from "../Spinner/Spinner";
+import { spinner } from '../Spinner/Spinner';
+import { API_KEY, API_URL } from "../../config";
+import axios from "axios";
 
 class Details extends React.Component {
     constructor(props) {
         super(props);
-        state = {
-            actors: [
-                { name: 'Roger Moore' },
-                { name: 'Ben Afleck' },
-                { name: 'Al Pacino' },
-                { name: 'Rober Deniro' },
-                { name: 'Brad Pit' },
-                { name: 'Jessica Alba' },
-                { name: 'Sophie Marceau' },
-            ],
+        this.state = {
+            loading: false,
+            actors: [],
+            mTitle: '',
+            mDesc: '',
+            tag: '',
+            runtime: '',
+            revenue: '',
+            status: '',
+            imgSrc: '',
+            vote: '',
         };
     }
 
+   async componentDidMount() {
+       const ID = this.props.match.params.id;
+       const UrlMovieDetails = `${API_URL}/movie/${ID}?api_key=${API_KEY}&language=fr`;
+       const UrlMovieArtist = `${API_URL}/movie/${ID}/credits?api_key=${API_KEY}&language=fr`;
+       const {data: {
+           title,
+           tag,
+           overview,
+           runtime,
+           revenue,
+           status,
+           poster_path,
+           vote_average,
+       }} = await this.loadInfos(UrlMovieDetails);
+       this.setState({
+           mTitle: title,
+           tag: tag,
+           mDesc: overview,
+           runtime: runtime,
+           revenue: revenue,
+           status: status,
+           imgSrc: poster_path,
+           vote: vote_average,
+       }, async () => {
+           const { data: { cast } } = await this.loadInfos(UrlMovieArtist);
+           this.setState({actors: cast, loading: false });
+       })
+    }
+
+    loadInfos = url => axios.get(url);
+
     render() {
+        const {
+            mTitle,
+            tag,
+            mDesc,
+            runtime,
+            revenue,
+            status,
+            imgSrc,
+            vote
+        } = this.state;
         return (
             <div className="app">
                 {this.props.loading? (
@@ -32,15 +76,16 @@ class Details extends React.Component {
                 ) : (
                     <>
                         <HeaderDetails
-                            mTitle="Batman"
-                            mDesc="La description"
-                            runtime="2h15"
-                            revenue="150.000.000"
-                            status="Release"
-                            imgSrc="../../images/Fast_small.jpg"
-                            vote=""
+                            mTitle={ mTitle }
+                            tag={ tag }
+                            mDesc={ mDesc }
+                            runtime={ runtime }
+                            revenue={ revenue }
+                            status={ status }
+                            imgSrc={ imgSrc }
+                            vote={ vote }
                         />
-                        <ActorList actors={actors} />
+                        <ActorList actors={this.state.actors} />
                     </>
                 )}
             </div>

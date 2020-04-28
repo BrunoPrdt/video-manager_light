@@ -92,10 +92,10 @@ class App extends React.Component {
     };
 
     searchMovie = () => {
-        const moviesUrlById = `${API_URL}/search/movie?api_key=${API_KEY}&language=fr&query=${ 
+        const moviesUrl = `${API_URL}/search/movie?api_key=${API_KEY}&language=fr&query=${ 
             this.state.searchText
         }&include_adult=${this.state.adultContent}`;
-        return axios.get(moviesUrlById);
+        return axios.get(moviesUrl);
     };
 
     handleSearch = value => {

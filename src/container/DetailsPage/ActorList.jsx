@@ -9,12 +9,13 @@ import '../../css/ActorList.css';
 function ActorList(props) {
     function renderActor() {
         return props.actors.map((actor, index) => {
-            const imgSrc = "../../images/Fast_small.jpg";
+            const imgSrc = actor.profile_path;
             return (
                 <Actor
                     /* eslint-disable-next-line react/no-array-index-key */
                     key={index}
                     imgSrc={imgSrc}
+                    character={actor.character}
                     name={actor.name}
                     hover={false}
                 />

@@ -5,6 +5,7 @@
 import React from 'react';
 import Fontawesome from 'react-fontawesome';
 import '../../css/Poster.css';
+import { Link } from "react-router-dom";
 
 class Poster extends React.Component {
     constructor(props) {
@@ -41,17 +42,20 @@ class Poster extends React.Component {
     };
 
     render() {
+        console.log('id : ', this.props);
         return (
             <div
                 className="poster"
                 onMouseEnter={this.showOverlay}
                 onMouseLeave={this.hideOverlay}
             >
-                <img
-                    className="poster--img"
-                    src={this.props.imgSrc}
-                    alt={this.props.mTitle}
-                />
+                <Link to={`/details/${this.props.id}`}>
+                    <img
+                        className="poster--img"
+                        src={this.props.imgSrc}
+                        alt={this.props.mTitle}
+                    />
+                </Link>
                 {this.state.hover ? (
                     <div className="poster--overlay">
                         <h3 className="poster--overlay__text">LISTE DE SOUHAITS</h3>
