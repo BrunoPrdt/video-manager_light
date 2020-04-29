@@ -1,3 +1,7 @@
+/**
+ * src/actions/movie.js
+ * @author Bruno Prdt
+ */
 import { ADD_MOVIE, REMOVE_MOVIE, GET_NUMBER, GET_MOVIES } from "./types";
 
 export  const addMovie = movie => {

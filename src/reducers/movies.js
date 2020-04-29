@@ -1,3 +1,7 @@
+/**
+ * src/reducers/movies.js
+ * @author Bruno Prdt
+ */
 import { ADD_MOVIE, REMOVE_MOVIE, GET_MOVIES, GET_NUMBER } from "../actions";
 
 const initialState = {
