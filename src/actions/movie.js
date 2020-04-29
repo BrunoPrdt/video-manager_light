@@ -37,10 +37,11 @@ export const getNumber = () => {
     const movies = JSON.parse(localStorage.getItem("movies"));
     let number;
     if (movies) {
-        number = movies.lenth;
+        number = movies.lenght;
     } else number = 0;
     return {
-        types: GET_NUMBER,
+        type: GET_NUMBER,
         payload: number
     }
 };
+
