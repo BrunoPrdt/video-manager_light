@@ -2,8 +2,13 @@
  * src/store/index.js
  * @author Bruno Prdt
  */
-import { createStore } from "redux";
-import routeReducer from '../reducers'
+import { createStore, compose } from "redux";
+import rootReducer from '../reducers'
 
-const store = createStore(routeReducer, {});
+const enhancers = compose(
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+const store = createStore(rootReducer, {}, enhancers);
+
 export default store;

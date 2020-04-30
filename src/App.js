@@ -8,6 +8,8 @@ import axios from 'axios';
 import { spinner } from "./container/Spinner/Spinner";
 import Details from "./container/DetailsPage";
 import NotFound from "./container/NotFoundPage";
+import { Provider } from 'react-redux';
+import store from "./store";
 
 class App extends React.Component {
     constructor(props) {
@@ -130,29 +132,31 @@ class App extends React.Component {
 
   render() {
     return (
-        <BrowserRouter>
-            <div className="App">
-                <Header badge={this.state.badge} />
-                {!this.state.image ? (
-                    spinner
-                ) : (
-                    <Switch>
-                        {/* <Route exact path="/" component={Home} />  methode si pas besoin de passer des props */}
-                        <Route exact path="/" render={() => (
-                            <Home
-                                {...this.state}
-                                onSearchClick={this.handleSearch}
-                                onButtonClick={this.loadMore}
-                                handleCheck={this.handleCheck}
+        <Provider store={store}>
+            <BrowserRouter>
+                <div className="App">
+                    <Header badge={this.state.badge} />
+                    {!this.state.image ? (
+                        spinner
+                    ) : (
+                        <Switch>
+                            {/* <Route exact path="/" component={Home} />  methode si pas besoin de passer des props */}
+                            <Route exact path="/" render={() => (
+                                <Home
+                                    {...this.state}
+                                    onSearchClick={this.handleSearch}
+                                    onButtonClick={this.loadMore}
+                                    handleCheck={this.handleCheck}
+                                />
+                            )}
                             />
-                        )}
-                        />
-                        <Route path="/details/:id" component={Details} />
-                        <Route path="" component={NotFound} />
-                    </Switch>
-                )}
-            </div>
-        </BrowserRouter>
+                            <Route path="/details/:id" component={Details} />
+                            <Route path="" component={NotFound} />
+                        </Switch>
+                    )}
+                </div>
+            </BrowserRouter>
+        </Provider>
     );
   }
 }

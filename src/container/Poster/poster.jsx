@@ -6,13 +6,15 @@ import React from 'react';
 import Fontawesome from 'react-fontawesome';
 import '../../css/Poster.css';
 import { Link } from "react-router-dom";
+import { addMovie, removeMovie } from "../../actions/movie";
+import { connect } from "react-redux";
 
-class Poster extends React.Component {
+class PosterComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             hover: false,
-            whished: this.props.whished,
+            wished: this.props.wished,
         };
     }
 
@@ -28,21 +30,22 @@ class Poster extends React.Component {
     };
 
     posterWish = () => {
-        if (this.state.whished) {
+        if (this.state.wished) {
             return;
         }
-        this.setState({whished: true})
+        this.setState({wished: true});
+        this.props.wishMovie(this.props.movie);
     };
 
     posterUnwish = () => {
-        if (!this.state.whished) {
+        if (!this.state.wished) {
             return;
         }
-        this.setState({whished: false})
+        this.setState({wished: false});
+        this.props.unwishMovie(this.props.id);
     };
 
     render() {
-        console.log('id : ', this.props);
         return (
             <div
                 className="poster"
@@ -59,7 +62,7 @@ class Poster extends React.Component {
                 {this.state.hover ? (
                     <div className="poster--overlay">
                         <h3 className="poster--overlay__text">LISTE DE SOUHAITS</h3>
-                        {this.state.whished ? (
+                        {this.state.wished ? (
                             <Fontawesome
                                 className="poster--icon"
                                 name="heart"
@@ -79,4 +82,14 @@ class Poster extends React.Component {
         );
     }
 }
+
+const mapDispatchMovieToProps = dispatch => {
+    return {
+        wishMovie: movie => dispatch(addMovie(movie)),
+        unwishMovie: movieId => dispatch(removeMovie(movieId)),
+    }
+};
+
+const Poster = connect(null, mapDispatchMovieToProps)(PosterComponent);
+
 export default Poster;
