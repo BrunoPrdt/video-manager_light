@@ -20,8 +20,15 @@ function HeaderComponent(props) {
 			<Link to="/">
 				<Fontawesome className="header--movie" name="film" size="5x" />
 			</Link>
-			<h3>NETPRIME</h3>
-			<Fontawesome className="header--heart" name="heart" size="5x" />
+			<Link
+				to="/"
+				style={{textDecoration: "none", color: "#fff"}}
+			>
+				<h3>NETPRIME</h3>
+			</Link>
+			<Link to="/player">
+				<Fontawesome className="header--heart" name="heart" size="5x" />
+			</Link>
 			{/* eslint-disable-next-line react/prop-types */}
 			<div className="header--badge">{props.badge}</div>
 		</div>

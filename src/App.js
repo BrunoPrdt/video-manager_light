@@ -5,11 +5,12 @@ import {Header} from "./components/Header";
 import {Home} from './container/HomePage';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import axios from 'axios';
-import { spinner } from "./container/Spinner/Spinner";
+import { Spinner } from "./container/Spinner/Spinner";
 import Details from "./container/DetailsPage";
 import NotFound from "./container/NotFoundPage";
 import { Provider } from 'react-redux';
 import store from "./store";
+import { MoviePlayer } from "./container/MoviePlayer";
 
 class App extends React.Component {
     constructor(props) {
@@ -137,7 +138,7 @@ class App extends React.Component {
                 <div className="App">
                     <Header badge={this.state.badge} />
                     {!this.state.image ? (
-                        spinner
+                        <Spinner />
                     ) : (
                         <Switch>
                             {/* <Route exact path="/" component={Home} />  methode si pas besoin de passer des props */}
@@ -151,6 +152,8 @@ class App extends React.Component {
                             )}
                             />
                             <Route path="/details/:id" component={Details} />
+                            <Route exact path="/player" component={MoviePlayer} />
+                            <Route path="/player/:id" component={MoviePlayer} />
                             <Route path="" component={NotFound} />
                         </Switch>
                     )}

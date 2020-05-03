@@ -6,7 +6,7 @@ import React from 'react';
 import '../../css/Container.css';
 import HeaderDetails from './HeaderDetails';
 import ActorList from './ActorList';
-import { spinner } from '../Spinner/Spinner';
+import { Spinner } from '../Spinner/Spinner';
 import { API_KEY, API_URL } from "../../config";
 import axios from "axios";
 
@@ -72,7 +72,7 @@ class Details extends React.Component {
         return (
             <div className="app">
                 {this.props.loading? (
-                    spinner
+                    <Spinner />
                 ) : (
                     <>
                         <HeaderDetails

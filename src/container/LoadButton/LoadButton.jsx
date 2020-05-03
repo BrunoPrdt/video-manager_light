@@ -4,7 +4,7 @@
  */
 import React from 'react';
 import '../../css/LoadButton.css';
-import { spinner } from '../Spinner/Spinner';
+import { Spinner } from '../Spinner/Spinner';
 
 function LoadButton(props) {
     const page = props.activePage+1;
@@ -12,7 +12,7 @@ function LoadButton(props) {
         <>
             {/* eslint-disable-next-line react/prop-types */}
             {props.loading ? (
-                spinner
+                <Spinner />
             ) : (
                 <div
                     className="loadButton"

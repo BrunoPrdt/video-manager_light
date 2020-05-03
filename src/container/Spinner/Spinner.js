@@ -5,7 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 
 library.add(faSpinner);
 
-export const spinner = props => {
+export const Spinner = props => {
     return (
         <FontAwesomeIcon icon="spinner" pulse size="7x" className="fa-faSpinner" />
     )

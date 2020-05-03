@@ -34,6 +34,7 @@ class PosterComponent extends React.Component {
             return;
         }
         this.setState({wished: true});
+        console.log('add avec redux');
         this.props.wishMovie(this.props.movie);
     };
 
@@ -42,6 +43,7 @@ class PosterComponent extends React.Component {
             return;
         }
         this.setState({wished: false});
+        console.log('remove avec redux');
         this.props.unwishMovie(this.props.id);
     };
 

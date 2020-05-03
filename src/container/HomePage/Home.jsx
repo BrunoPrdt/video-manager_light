@@ -8,16 +8,16 @@ import { HeaderImg } from '../../components/Header/HeaderImg';
 import {SearchBar} from '../SearchBar/SearchBar';
 import PosterList from '../PosterList/PosterList';
 import LoadButton from '../LoadButton/LoadButton';
-// import { connect } from 'react-redux'
-// import { getMovies } from "../../actions/movie";
+import { connect } from 'react-redux'
+import { getMovies } from "../../actions/movie";
 
-class Home extends React.Component {
-    /* componentDidMount() {
-        // this.props.getWhishedMovies();
-    } */
+class HomeComponent extends React.Component {
+    componentDidMount() {
+        this.props.getWhishedMovies();
+    }
 
     render() {
-        const {movieTitle, movieDescription, image, movies, loading, activePage, totalPages} = this.props;
+        const {movieTitle, movieDescription, image, movies, loading, activePage, totalPages, localMovies} = this.props;
         return (
             <div>
             <HeaderImg
@@ -29,7 +29,7 @@ class Home extends React.Component {
                     onSearchClick={this.props.onSearchClick}
                     handleCheck={this.props.handleCheck}
                 />
-                <PosterList movies={movies} localMovies={this.props.localMovies} />
+                <PosterList movies={movies} localMovies={localMovies} />
                 <LoadButton
                     loading={loading}
                     onButtonClick={this.props.onButtonClick}
@@ -41,7 +41,7 @@ class Home extends React.Component {
     }
 }
 
-/* const mapStateToProps = state => {
+const mapStateToProps = state => {
     return {
         localMovies: state.movies.movies
     }
@@ -53,6 +53,6 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-const Home = connect(mapStateToProps, mapDispatchToProps)(HomeComponent); */
+const Home = connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
 
 export { Home }
