@@ -91,6 +91,18 @@ class MoviePlayer extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.match.params.id !== this.props.match.params.id){
+            const id = this.props.match.params.id;
+            const selectedMovie = this.getSelectedMovie(newMovies, id);
+            console.log('componentDidUpdate');
+            this.setState({
+                loading: false,
+                selectedMovie,
+            })
+        }
+    }
+
     getSelectedMovie = (movies, movieId) => {
         const selectedMovie = _.find(movies, { id: parseInt(movieId, 10) });
         return selectedMovie;
